@@ -555,7 +555,7 @@ donald@DatabaseServer:/home$ ls -lart /usr/bin/screen-4.5.0
 -rwsr-xr-x 1 root root 1860280 Aug 27 09:50 /usr/bin/screen-4.5.0
 ```
 screen can be run with root suid! Lets see if we can axploit that.
-There's an interesting exploit on that screen version on (exploitdb)[https://www.exploit-db.com/exploits/41154]:
+There's an interesting exploit on that screen version on [exploitdb](https://www.exploit-db.com/exploits/41154):
 
 ### To be continued..
 
