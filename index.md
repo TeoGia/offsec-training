@@ -1,6 +1,6 @@
 ---
 ---
-{% raw %}{% seo %}{% endraw %}
+{% raw %} {% seo %} {% endraw %}
 # Welcome to my OSCP training blog
 A while ago, I decided to take the OSCP exam, I also decided to get my hands dirty with vulnerable VMs.
 

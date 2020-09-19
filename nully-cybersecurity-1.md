@@ -1,6 +1,6 @@
 ---
 ---
-{% raw %}{% seo %}{% endraw %}
+{% raw %} {% seo %} {% endraw %}
 
 # Nully Cybersecurity 1:
 
