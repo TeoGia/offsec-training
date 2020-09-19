@@ -5,3 +5,5 @@ description: A blog dedicated to offensive security training - vulerable VMs wri
 url: https://teogia.github.io/offsec-training/
 author: TeoGia
 lang: en_US
+plugins:
+  - jekyll-seo-tag
