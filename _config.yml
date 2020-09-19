@@ -7,3 +7,4 @@ author: TeoGia
 lang: en_US
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
