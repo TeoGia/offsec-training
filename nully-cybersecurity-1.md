@@ -1,7 +1,5 @@
 ---
 ---
-{% raw %} {% seo %} {% endraw %}
-
 # Nully Cybersecurity 1:
 
 Hello, this is my first writeup, while studying for the OSCP certification. This VM (found [here](https://www.vulnhub.com/entry/nully-cybersecurity-1,549/)) was the most enjoyable so far, so I decided to create a writeup on it. It is a nice easy-intermediate level machine, that taught me a lot about pivoting and the metasploit framework.
