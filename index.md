@@ -14,3 +14,4 @@ I'm a full stack software engineer with a passion for devOps and offensive secur
 ## Witeups
 
 - [Nully Cybersecurity 1](https://teogia.github.io/offsec-training/nully-cybersecurity-1) 
+- [CewlKid 1](https://teogia.github.io/offsec-training/CewlKid-1)
