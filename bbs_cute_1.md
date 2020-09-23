@@ -480,3 +480,5 @@ We get a response like this:
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 so remote code execution is a go!
+
+## To be continued
