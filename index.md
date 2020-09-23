@@ -1,7 +1,7 @@
 ---
 ---
 # Welcome to my OSCP training blog
-A while ago, I decided to take the OSCP exam, I also decided to get my hands dirty with vulnerable VMs.
+A while ago, I decided to take the OSCP exam, I also decided to get my hands dirty with some vulnerable VMs for practice.
 
 I created this page as learning material/practice for fellow geeks that would like to take the OSCP exam.
 
@@ -15,3 +15,4 @@ I'm a full stack software engineer with a passion for devOps and offensive secur
 
 - [Nully Cybersecurity 1](https://teogia.github.io/offsec-training/nully-cybersecurity-1) 
 - [CewlKid 1](https://teogia.github.io/offsec-training/CewlKid-1)
+- [BBS Cute 1](https://teogia.github.io/offsec-training/bbs_cute_1)
