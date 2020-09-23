@@ -473,7 +473,7 @@ test the remote code execution by navigating to:
 ```
 http://192.168.1.9/uploads/avatar_tester_bad.php?cmd=id
 ```
-> Replace tester with your username
+> Replace tester with the username of your fake account.
 
 We get a response like this:
 ```
