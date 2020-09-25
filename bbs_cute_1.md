@@ -516,7 +516,9 @@ Matching Defaults entries for www-data on cute:
 User www-data may run the following commands on cute:
     (root) NOPASSWD: /usr/sbin/hping3
 ```
-Now, simply executing `sudo hping3` will give us a limited root shell, that we can read the final flage from:
+Googling about `hping3` yielded some interesting results. It seems that this command has an interactive mode, that we can use to get a root shell.
+
+Now, simply executing `sudo hping3` will give us a limited root shell, that we can read the final flag from:
 ```
 www-data@cute:/home/fox$ sudo hping3
 sudo hping3
