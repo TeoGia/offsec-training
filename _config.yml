@@ -1,7 +1,7 @@
 theme: jekyll-theme-hacker
 title: OSCP training - Vulnerable VMs writeups
 tagline: A blog dedicated to offensive security training
-description: A blog dedicated to offensive security training - vulnerable VMs writeups
+description: A blog dedicated to offensive security training - vulnerable VMs writeups and walkthroughs
 url: https://teogia.github.io/offsec-training/
 author: TeoGia
 lang: en_US
