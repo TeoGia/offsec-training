@@ -16,3 +16,4 @@ I'm a full stack software engineer with a passion for devOps and offensive secur
 - [Nully Cybersecurity 1](https://teogia.github.io/offsec-training/nully-cybersecurity-1) 
 - [CewlKid 1](https://teogia.github.io/offsec-training/CewlKid-1)
 - [BBS Cute 1](https://teogia.github.io/offsec-training/bbs_cute_1)
+- [Bizarre Adventure: Sticky Fingers](https://teogia.github.io/offsec-training/Bizarre-Adventure)
