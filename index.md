@@ -17,3 +17,4 @@ I'm a full stack software engineer with a passion for devOps and offensive secur
 - [CewlKid 1](https://teogia.github.io/offsec-training/CewlKid-1)
 - [BBS Cute 1](https://teogia.github.io/offsec-training/bbs_cute_1)
 - [Bizarre Adventure: Sticky Fingers](https://teogia.github.io/offsec-training/Bizarre-Adventure)
+- [KB Vuln:2](https://teogia.github.io/offsec-training/KB-Vuln-2)
